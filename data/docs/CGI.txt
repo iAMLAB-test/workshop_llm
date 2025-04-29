@@ -1,0 +1,193 @@
+1. Corporate Overview
+1.1. ABOUT CGI
+
+Founded in 1976 and headquartered in Montréal, Canada, CGI is a leading IT and business consulting services firm with
+approximately 90,250 consultants and professionals worldwide. We use the power of technology to help clients accelerate
+their holistic digital transformation.
+
+CGI has a people-centered culture, operating where our clients live and work to build trusted relationships and to advance our
+shared communities. Our consultants and professionals are committed to providing actionable insights that help clients
+achieve their business outcomes. CGI’s global delivery centers complement our proximity-based teams, offering clients added
+options that deliver scale, innovation and delivery excellence in every engagement.
+
+End-to-end services and solutions
+
+CGI delivers end-to-end services that help clients achieve the highest returns on their digital investments. We call this ROI-led
+digitization. Our insights-driven end-to-end services and solutions work together to help clients design, implement, run and
+operate the technology critical to achieving their business strategies. Our portfolio encompasses:
+
+i. Business and strategic IT consulting, and systems integration services: CGI helps clients drive sustainable
+value in critical consulting areas, including strategy, organization and change management, core operations and
+technology. Within each of these areas, our consultants also deliver a broad range of business offerings to address
+client executives' priorities, including designing and advancing strategies for the responsible use of artificial
+intelligence (AI), sustainable supply chain management, environmental, social and governance (ESG), mergers and
+acquisitions, and more. In the area of systems integration, we help clients accelerate the enterprise modernization
+of their legacy systems and adopt new technologies to drive innovation and deliver real-time and insight-driven
+customer and citizen services.
+
+ii. Managed IT and business process services: Working as an extension of our clients’ organizations, we take on
+full or partial responsibility for managing their IT functions, freeing them up to focus on their strategic business
+direction. Our services enable clients to reinvest, alongside CGI, in the successful execution of their digital
+transformation roadmaps. We help them increase agility, scalability and resilience; deliver operational efficiencies,
+innovations and reduced costs; and embed security and data privacy controls. Typical services include: application
+development, modernization and maintenance; holistic enterprise digitization, automation, hybrid and cloud
+management; and business process services.
+
+iii. Intellectual property (IP) business solutions: CGI's portfolio of IP solutions are highly configurable “business
+platforms as a service” that are embedded within our end-to-end service offerings and utilize integrated security,
+data privacy practices, provider-neutral cloud approaches, and advanced AI capabilities to provide immediate
+benefits to clients. We invest in, and deliver, market-leading IP to drive business outcomes within each of our target
+industries. We also collaborate with clients to build and evolve IP-based solutions while enabling a higher degree of
+flexibility and customization for their unique modernization and digitization needs.
+
+Deep industry and technology expertise
+
+CGI has long-standing and focused practices in all of its core industries, providing clients with a partner that is not only an
+expert in IT, but also an expert in their respective industries. This combination of business knowledge and digital technology
+expertise allows us to help our clients navigate complex challenges and focus on value creation. In the process, we evolve the
+services and solutions we deliver within our targeted industries and provide thought leadership, blueprints, frameworks and
+technical accelerators that help client evolve their ecosystems.
+
+Our targeted industries include financial services (including banking and insurance), government (including space),
+manufacturing, retail and distribution (including consumer services, transportation and logistics), communications and utilities
+(including energy and media), and health (including life sciences). To help orchestrate our global posture across these
+industries, our leaders regularly participate in cabinet meetings and councils to advance the strategies, services and solutions
+we deliver to our clients.
+Management’s Discussion and Analysis | For the years ended September 30, 2024 and 2023
+© 2024 CGI Inc. Page 9
+FISCAL 2024 RESULTS — 9
+
+Helping clients leverage technology to its fullest
+
+Macro trends such as supply chain reconfiguration, climate change and energy transition, and demographic shifts including
+aging populations and talent shortages require new business models and ways of working. At the same time, technology is
+reshaping our future and creating new opportunities.
+
+Accelerating digitization provides the inclusive, economically vibrant, and sustainable future our clients’ customers and citizens
+demand. Leveraging technology to its fullest helps clients to lead within their industries. Our end-to-end digital services,
+industry and technology expertise, and operational excellence combine to help clients advance their holistic digital
+transformation.
+
+Through our proprietary Voice of Our Clients research, we analyzed the characteristics of leading digital organizations and
+found these common attributes:
+
+• Strategic alignment and business agility: Digital leaders have highly agile business models to address digitization
+and are better at aligning and integrating business and IT operations to support and execute strategy.
+• Digitization: They have mature strategies to leverage data and digitization to achieve business model resilience, are
+less challenged by legacy systems, and extend their digitization strategy to their external ecosystem.
+• Data, automation and AI: They adopt a holistic data strategy for the enterprise and ecosystem and have a higher
+rate of being in progress with or having implemented both traditional and generative AI.
+• Data privacy and protection: They produce greater results from their data privacy and protection strategy, which
+also extends to their external ecosystem. Their cybersecurity programs are highly mature in terms of connected
+assets.
+
+Digital leaders across industries seek new ways to evolve their strategy and operational models and use technology and
+information to improve how they operate, deliver products and services, and create value.
+
+CGI helps clients adopt leading digital attributes and design, manage, protect and evolve their digital value chains to
+accelerate business outcomes.
+
+Quality processes
+
+Our clients expect consistent service wherever and whenever they engage us. We have an outstanding track record of on time, within-budget delivery as a result of our commitment to excellence and our robust governance model - CGI's
+Management Foundation.
+
+Our Management Foundation provides a common business language, frameworks and practices for managing operations
+consistently across the globe, driving continuous improvement. We also invest in rigorous quality and service delivery
+standards including the International Organization for Standardization (ISO) and Capability Maturity Model Integration (CMMI)
+certification programs, as well as a comprehensive Client Satisfaction Assessment Program, with signed client assessments,
+to ensure high satisfaction on an ongoing basis.
+
+1.2. VISION AND STRATEGY
+CGI is unique compared to most companies, as our vision is based on a dream: “To create an environment in which we enjoy
+working together and, as owners, contribute to building a company we can be proud of.” This dream has motivated us since
+our founding in 1976 and drives our vision: “To be a global, world-class end-to-end IT and business consulting services leader
+helping our clients succeed.”
+
+In pursuing our dream and vision, CGI has been highly disciplined throughout its history in executing a Build and Buy profitable
+growth strategy comprised of four pillars that combine profitable organic growth (Build) and accretive acquisitions (Buy):
+
+Pillar 1: Win, renew and extend contracts
+
+Pillar 2: New large managed IT and business process services contracts
+
+These first two pillars relate to driving profitable organic growth through the pursuit of contracts with new and existing clients in
+our targeted industries. As such, CGI engages with new and existing clients on four levers in our portfolio of end-to-end
+services and solutions: Business and Strategic IT Consulting, Systems Integration, Managed Services and IP-based services.
+Successes in these pillars reflect the strength of our end-to-end portfolio of capabilities, the depth of expertise of our
+consultants in business and IT, client satisfaction in our delivery excellence, and the appreciation of the proximity model by our
+clients, both existing and potential.
+
+Pillar 3: Metro market acquisitions
+
+Pillar 4: Large, transformational acquisitions
+
+The third and fourth pillars focus on growth through accretive acquisitions. The third pillar for metro market acquisitions
+complements the proximity model and helps to provide a fuller range of end-to-end services. The fourth pillar for large
+transformational acquisitions helps to further expand our geographic footprint and reach the critical mass required to compete
+for large managed IT and business process services contracts and broaden our client relationships. Both the third and fourth
+pillars are supported by three levers. First, is our range of end-to-end services that allow us to consider a broad range of
+acquisitions. A second lever is CGI's industry sector mix that helps us mirror the IT spend of each metro market over time. A
+final lever across pillars three and four focuses on IP-based services firms that offer consulting services and managed services
+that leverage their solutions.
+CGI will continue to be a consolidator in the IT and business consulting services industry by being active across these four
+pillars.
+
+Executing our strategy
+
+CGI’s strategy is executed through a business model that combines client proximity with an extensive global delivery network
+to deliver the following benefits:
+
+• Local relationships and accountability: We live and work near our clients to provide a high level of
+responsiveness, partnership, and innovation. Our local consultants and professionals speak our clients' language,
+understand their business and industries, and collaborate to meet their goals and advance their business.
+• Global reach: Our local presence is complemented by an expansive global delivery network that ensures our
+clients have 24/7 access to best-fit digital capabilities and resources to meet their end-to-end needs. In addition,
+clients benefit from our unique combination of industry domain and technology expertise within our global delivery
+model.
+• Committed experts: Two of our key strategic goals are to be our clients’ partner and expert of choice. To achieve
+this, we invest in developing and recruiting professionals with extensive industry, business and in-demand technology
+expertise. Individually and collectively, each of our experts embody partnership behaviors in all they do by being
+consultative and building trusted relationships with each other, our clients, shareholders, and within our communities.
+In addition, a majority of consultants and professionals are also owners through our Share Purchase Plan, which,
+combined with the Profit Participation Plan, provide an added level of commitment to the success of our clients.
+• Everyday innovation: Our approach to client engagements is to continuously bring forward actionable insights that
+support clients’ ROI-led digitization priorities. Through our client satisfaction program, we regularly assess the degree
+to which clients find that CGI introduced applicable innovation to the engagements we deliver for them, including
+through our ideas, processes, tools and offerings. We also scale innovative solutions co-created with clients through a
+global governance model.
+• Comprehensive quality processes: CGI’s investment in quality frameworks and rigorous client satisfaction
+assessments has resulted in a consistent track record of on-time and within-budget project delivery. With regular
+reviews of engagements and transparency at all levels, the Company ensures that client objectives and its own
+Management’s Discussion and Analysis | For the years ended September 30, 2024 and 2023
+© 2024 CGI Inc. Page 11
+FISCAL 2024 RESULTS — 11
+quality objectives are consistently followed at all times. This thorough process enables CGI to generate continuous
+improvements for all stakeholders by applying corrective measures as soon as they are required.
+• ESG strategy: At CGI, our ESG strategy is key to contributing to our strategic goal to be recognized by our
+stakeholders as an engaged, ethical and responsible corporate citizen within our communities. Our commitments
+align with the United Nations (UN) Global Compact’s 10 principles and the Science Based Target initiative (SBTi) and
+we are recognized by leading international indices, including EcoVadis, Carbon Disclosure Project (CDP) and Dow
+Jones Sustainability Indices (DJSI). We prioritize partnerships with clients, while also collaborating with educational
+institutions and local organizations, on three global priorities: people, communities and climate. We demonstrate our
+commitment to a sustainable world through projects delivered in collaboration with clients and through operating
+practices, supply chain management, and community service activities.
+
+1.3. COMPETITIVE ENVIRONMENT
+As market dynamics and industry trends continue to increase client demand for ROI-led digitization, CGI is well-positioned to
+serve as a digital partner and expert of choice. We work with clients across the globe to implement digital strategies, roadmaps
+and solutions that help clients transform the customer/citizen experience, drive the launch of new products and services, and
+deliver efficiencies and cost savings.
+CGI’s competition is comprised of a variety of firms, from local companies providing specialized services and software,
+government pure-plays to global business consulting and IT services providers. All of these players are competing to deliver
+some or all of the services we provide.
+ Many factors distinguish the industry leaders, including the following:
+• Depth and breadth of industry and technology expertise;
+• Local presence and strength of client relationships;
+• Extensive and flexible global delivery network, including onshore, nearshore and offshore options;
+• Breadth of digital IP solutions;
+• Total cost of services and value delivered;
+• Ability to deliver practical innovation for measurable results; and
+• Consistent on-time, within-budget delivery everywhere clients operate.
+CGI is one of the leaders in the industry with respect to the combination of these factors. CGI is one of few firms with the scale,
+reach, and capabilities to meet clients’ enterprise business and technology needs

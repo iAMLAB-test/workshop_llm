@@ -1,0 +1,1163 @@
+# New namespaces.
+@prefix constraint: <https://data.achmea.nl/constraint/> .
+@prefix def: <https://data.achmea.nl/def/> .
+@prefix id: <https://data.achmea.nl/id/> .
+@prefix graph: <https://data.achmea.nl/id/graph/> .
+@prefix rule: <https://data.achmea.nl/rule/> .
+@prefix shp: <https://data.achmea.nl/shp/> .
+# Existing namespaces.
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs1: <https://www.w3.org/2000/01/rdf-schema#/> .
+@prefix sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+graph:metadata {
+  # Declared ontology.
+  def: a owl:Ontology;
+    owl:versionInfo "0.1";
+    rdfs1:label "Vocabulaire voor product/dienstengraaf en wetgraaf van Achmea."@nl;
+    rdfs1:comment "Vocabulaire voor product/dienstengraaf en wetgraaf van Achmea."@nl;
+    dcterms:created "2025-04-11"^^xsd:date;
+    sh:declare
+      id:constraintPref,
+      id:defPref,
+      id:idPref,
+      id:rulePref,
+      id:shpPref,
+      id:dctermsPref,
+      id:owlPref,
+      id:qbPref,
+      id:rdfPref,
+      id:rdfs1Pref,
+      id:sdmx-dimensionPref,
+      id:shPref,
+      id:xsdPref.
+  ## Prefix declaration
+  id:constraintPref
+    sh:prefix 'constraint';
+    sh:namespace 'https://data.achmea.nl/constraint/'^^xsd:anyURI .
+  id:defPref
+    sh:prefix 'def';
+    sh:namespace 'https://data.achmea.nl/def/'^^xsd:anyURI .
+  id:idPref
+    sh:prefix 'id';
+    sh:namespace 'https://data.achmea.nl/id/'^^xsd:anyURI .
+  id:rulePref
+    sh:prefix 'rule';
+    sh:namespace 'https://data.achmea.nl/rule/'^^xsd:anyURI .
+  id:shpPref
+    sh:prefix 'shp';
+    sh:namespace 'https://data.achmea.nl/shp/'^^xsd:anyURI .
+  id:dctermsPref
+    sh:prefix 'dcterms';
+    sh:namespace 'http://purl.org/dc/terms/'^^xsd:anyURI .
+  id:owlPref
+    sh:prefix 'owl';
+    sh:namespace 'http://www.w3.org/2002/07/owl#'^^xsd:anyURI .
+  id:qbPref
+    sh:prefix 'qb';
+    sh:namespace 'http://purl.org/linked-data/cube#'^^xsd:anyURI .
+  id:rdfPref
+    sh:prefix 'rdf';
+    sh:namespace 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'^^xsd:anyURI .
+  id:rdfs1Pref
+    sh:prefix 'rdfs1';
+    sh:namespace 'https://www.w3.org/2000/01/rdf-schema#/'^^xsd:anyURI .
+  id:sdmx-dimensionPref
+    sh:prefix 'sdmx-dimension';
+    sh:namespace 'http://purl.org/linked-data/sdmx/2009/dimension#'^^xsd:anyURI .
+  id:shPref
+    sh:prefix 'sh';
+    sh:namespace 'http://www.w3.org/ns/shacl#'^^xsd:anyURI .
+  id:xsdPref
+    sh:prefix 'xsd';
+    sh:namespace 'http://www.w3.org/2001/XMLSchema#'^^xsd:anyURI .
+
+  # Instance data Class Shapes.
+  def:Law a owl:Class;
+    rdfs1:label
+      "Wet"@nl,
+      "Law"@en.
+  def:LawArticle a owl:Class;
+    rdfs1:label
+      "Wetsartikel"@nl,
+      "Law Article"@en.
+  def:LawArticleSection a owl:Class;
+    rdfs1:label
+      "Sectie van een wetsartikel"@nl,
+      "Section of a Law Article"@en.
+  def:LawVersion a owl:Class;
+    rdfs1:label
+      "Wet met versionering"@nl,
+      "Versioned Law"@en.
+  ## Shared predicates
+  def:hasFranchise a owl:ObjectProperty;
+    rdfs1:label "Franchise waarde."@nl,
+    "Franchise value."@en;
+    rdfs1:domain def:PDSProductChoice,qb:Observation;
+    rdfs1:range qb:Observation,xsd:decimal.
+  def:hasPremiumPercentage a owl:ObjectProperty;
+    rdfs1:label "Premie percentage waarde."@nl,
+    "Premie percentage value."@nl;
+    rdfs1:domain def:PDSProductChoice,qb:Observation;
+    rdfs1:range qb:Observation,xsd:decimal.
+  def:dimension-maximumPercentage a owl:DatatypeProperty;
+    rdfs1:label "Maximum premiepercentage."@nl,
+      "Maximum premium percentage."@en ;
+    rdfs1:domain qb:Observation;
+    rdfs1:range xsd:decimal.
+  def:dimension-minimumPercentage a owl:DatatypeProperty;
+    rdfs1:label "Minimum premiepercentage."@nl,
+      "Minimum premium percentage."@en ;
+    rdfs1:domain qb:Observation;
+    rdfs1:range xsd:decimal.
+  ## Law predicates
+  def:hasVersion a owl:ObjectProperty;
+    rdfs1:label
+      "Wetsversie."@nl,
+      "Law version."@en ;
+    rdfs1:domain def:Law;
+    rdfs1:range def:LawVersion.
+  def:hasArticle a owl:ObjectProperty;
+    rdfs1:label
+      "Wetsartikel."@nl,
+      "Law article."@en ;
+    rdfs1:domain def:LawVersion;
+    rdfs1:range def:LawArticle.
+  def:hasSection a owl:ObjectProperty;
+    rdfs1:label
+      "Sectie van wet."@nl,
+      "Section of law."@en ;
+    rdfs1:domain def:LawArticle;
+    rdfs1:range def:LawArticleSection.
+  def:hasText a owl:DatatypeProperty;
+    rdfs1:label
+      "Tekst van wetsartikel sectie."@nl,
+      "Text of law article section."@en ;
+    rdfs1:domain def:LawArticle, def:LawArticleSection;
+    rdfs1:range rdf:langString.
+  def:hasContext a owl:ObjectProperty;
+    rdfs1:label
+      "Wetsartikel die de context van het huidig artikel uitlegd."@nl,
+      "Law article providing context for the current article."@en ;
+    rdfs1:domain def:Law, def:LawArticleSection;
+    rdfs1:range qb:Observation.
+  def:hasValues a owl:ObjectProperty;
+    rdfs1:label
+      "Numerieke waarden in de tekst van een wetsartikel sectie."@nl,
+      "Numeric values in the law article section text."@en ;
+    rdfs1:domain
+      def:LawArticle,
+      def:LawArticleSection;
+    rdfs1:range qb:Observation.
+  def:holdsSince a owl:DatatypeProperty;
+    rdfs1:label
+      "Geldigheidsdatum van Wet."@nl,
+      "Effective date of law."@en ;
+    rdfs1:domain def:LawVersion, def:LawArticle;
+    rdfs1:range xsd:date.
+  def:referencesTo a owl:ObjectProperty;
+    rdfs1:label
+      "Heeft referenties naar."@nl,
+      "Has references to."@en ;
+    rdfs1:domain
+      def:LawArticle,
+      def:LawArticleSection;
+    rdfs1:range
+      def:LawArticleSection.
+}
+
+graph:shacl{
+  # PDS subgraaf specifieke shapes (refereren naar shp objecten).
+  def:PDSProductChoiceShape
+    a sh:NodeShape ;
+    sh:targetClass def:PDSProductChoice;
+    sh:property
+      shp:NodesExistInPDCShape,
+      shp:NoChoiceSuffixShape,
+      shp:PDSIncompleteValsShape,
+      shp:PDSPDCDiffShape,
+      ## imported and adjusted from def:Company shape.
+      shp:AllProductsFromPackageShape.
+  def:FranConstraintStrictShape
+    a sh:NodeShape ;
+    sh:targetClass def:FranConstraintStrict ;
+    sh:sparql
+      constraint:FranConstraintStrict.
+  def:FranConstraintShape
+    a sh:NodeShape ;
+    sh:targetClass def:FranConstraint ;
+    sh:sparql
+      constraint:FranConstraint.
+  def:PremPercConstraintShape
+    a sh:NodeShape ;
+    sh:targetClass
+      def:PremPercConstraint ;
+    sh:sparql
+      constraint:PremPercConstraint.
+  ## Productkeuze moet bestaan in de catalogus.
+  shp:NodesExistInPDCShape
+    a sh:PropertyShape ;
+    sh:path def:PDSProductChoice;
+    sh:severity sh:Violation ;
+    sh:sparql constraint:NodesExistInPDC_sparql .
+  constraint:NodesExistInPDC_sparql
+    a sh:SPARQLConstraint;
+    sh:prefixes graph:;
+    sh:select """
+        SELECT $this
+        WHERE {
+          BIND( IRI( STRBEFORE( STR($this), "_" ) ) AS ?this_alt )
+          FILTER NOT EXISTS {
+            GRAPH graph:ProductCatalogue {
+              ?this_alt ?p ?o .
+            }
+          }
+        }
+    """;
+    sh:message "Deze keuze is niet gedefinieerd in de catalogus."@nl .
+  ## Productkeuze node heeft geen suffix (bijv. .01, .02, .03).
+  ## Vaak veroorzaakt door onvolledige invulling.
+  shp:NoChoiceSuffixShape
+    a sh:PropertyShape ;
+    sh:path def:PDSProductChoice;
+    sh:severity sh:Violation ;
+    sh:sparql constraint:NoChoiceSuffix_sparql .
+  constraint:NoChoiceSuffix_sparql
+    a sh:SPARQLConstraint ;
+    sh:prefixes def:;
+    sh:select """
+      SELECT $this
+      WHERE {
+        $this a def:PDSProductChoice .
+        BIND( IRI( STRBEFORE( STR($this), "_" ) ) AS ?this_alt )
+        FILTER (!REGEX(str(?this_alt), "\\\\.[0-9]{2}$"))
+      }
+    """ ;
+    sh:message "Deze productkeuze is onvolledig ingevuld."@nl .
+  ## Productkeuze node heeft onvolledige invulling (op de 'Toelichting' kolom na).
+  shp:PDSIncompleteValsShape
+    a sh:PropertyShape ;
+    sh:path def:PDSProductChoice;
+    sh:severity sh:Violation ;
+    sh:sparql constraint:PDSIncompleteVals_sparql .
+  constraint:PDSIncompleteVals_sparql
+    a sh:SPARQLConstraint;
+    sh:prefixes def:;
+    sh:select
+      """
+      SELECT $this ?reason
+      WHERE {
+          $this a def:PDSProductChoice .
+          OPTIONAL {
+            $this def:hasSpecificity ?hasSpecificityTest .
+          }
+          OPTIONAL {
+            $this def:hasProductGroup ?ProductGroupTest .
+          }
+          OPTIONAL {
+            $this def:hasProductDescription ?ProductDescriptionTest .
+          }
+          OPTIONAL {
+            $this def:hasProductExplanation ?hasProductExplanationTest .
+        }
+        # Keep only those where at least one property is missing or mismatched
+        FILTER(
+           !BOUND(?hasSpecificityTest)
+          || !BOUND(?ProductGroupTest)
+          || !BOUND(?ProductDescriptionTest)
+          || !BOUND(?hasProductExplanationTest)
+        )
+        bind(
+          replace(
+            concat(
+              if(!BOUND(?hasSpecificityTest),"'G/S/A' en ",""),
+              if(!BOUND(?ProductGroupTest),"'ProductGroup' en ",""),
+              if(!BOUND(?ProductDescriptionTest),"'Omschrijving inhoud' en ",""),
+              if(!BOUND(?hasProductExplanationTest),"'Keuzes/invulling' en ","")
+            ),
+          " en $",
+          ""
+          )
+        as ?reason
+        )
+      }
+      ORDER BY $this
+      """;
+    sh:message "Deze productkeuze heeft geen waarden voor {?reason}."@nl .
+  ## Productkeuze invullingen komen niet overeen met de catalogus.
+  shp:PDSPDCDiffShape
+    a sh:PropertyShape ;
+    sh:path def:PDSProductChoice;
+    sh:severity sh:Violation ;
+    sh:sparql constraint:PDSPDCDiff_sparql.
+  constraint:PDSPDCDiff_sparql
+    a sh:SPARQLConstraint;
+    sh:prefixes def:,graph:;
+    sh:select
+      """
+      SELECT DISTINCT ?g $this ?reason
+      WHERE {
+        GRAPH ?g {
+          $this a def:PDSProductChoice .
+          $this def:isPartOf $base .
+          BIND( IRI( STRBEFORE( STR($this), "_" ) ) AS ?this_alt )
+          FILTER( !REGEX(STR(?this_alt), "^[^#]*#[A-Z]{2}\\\\d{3}(\\\\.[0-9]{2})$") )
+          OPTIONAL {
+            $this def:hasSpecificity ?hasSpecificityTest .
+          }
+          OPTIONAL {
+            $this def:hasProductGroup ?ProductGroupTest .
+          }
+          OPTIONAL {
+            $this def:hasProductDescription ?ProductDescriptionTest .
+          }
+        }
+        # Retrieve reference objects from ProductCatalogue graph.
+        GRAPH graph:ProductCatalogue {
+          OPTIONAL {
+            $base def:hasProductGroup ?ProductGroupPdc .
+          }
+          OPTIONAL {
+            $base def:hasProductDescription ?ProductDescriptionPdc .
+          }
+          OPTIONAL {
+            ?this_alt def:hasSpecificity ?hasSpecificityPdc .
+          }
+        }
+        # Keep only those where at least one property is missing or mismatched
+        FILTER(
+          ((?hasSpecificityTest != ?hasSpecificityPdc) && BOUND(?hasSpecificityPdc)&& BOUND(?hasSpecificityTest))
+          || ((?ProductGroupTest != ?ProductGroupPdc) && BOUND(?ProductGroupPdc)&& BOUND(?hasSpecificityTest))
+          || ((?ProductDescriptionTest != ?ProductDescriptionPdc) && BOUND(?ProductDescriptionPdc)&& BOUND(?hasSpecificityTest))
+        )
+        BIND(
+          CONCAT(
+            REPLACE(
+              CONCAT(
+                IF((?hasSpecificityTest != ?hasSpecificityPdc && BOUND(?hasSpecificityPdc) && BOUND(?hasSpecificityTest)), "'G/S/A' en ", ""),
+                IF((?ProductGroupTest != ?ProductGroupPdc && BOUND(?ProductGroupPdc) && BOUND(?ProductGroupTest)), "'ProductGroup' en ", ""),
+                IF((?ProductDescriptionTest != ?ProductDescriptionPdc && BOUND(?ProductDescriptionPdc) && BOUND(?ProductDescriptionTest)), "'Omschrijving inhoud' en ", "")
+              ),
+              " en $",
+              ""  # removes trailing comma if it exists
+            ),
+            " mismatch"
+          ) AS ?reason
+        )
+      }
+      ORDER BY $this
+      """;
+    sh:message "De productkeuze heeft een {?reason} met de PDC."@nl .
+  ## Package inclusion clause (one choice per product per package chosen).
+  shp:AllProductsFromPackageShape
+    a sh:PropertyShape;
+    sh:path def:PDSProductChoice;
+    sh:severity sh:Violation ;
+    sh:sparql constraint:AllProductsFromPackage_sparql .
+  constraint:AllProductsFromPackage_sparql
+    a sh:SPARQLConstraint ;
+      sh:message """Voor keuze {$this}, deel van pakket {?pakket} is nog geen keuze voor product {?missingProduct}."""@nl ;
+      sh:prefixes def: ;
+      # Select distinct for ?pakket and ?missingProduct does not work.
+      sh:select """
+        SELECT ?this ?pakket ?missingProduct ?this_mes ?pakket_mes ?missingProduct_mes
+        WHERE {
+          GRAPH ?g {
+            $this a def:PDSProductChoice .
+          }
+          BIND( IRI( STRBEFORE( STR($this), "_" ) ) AS ?this_alt )
+          ?this_alt a def:ProductChoice ;
+            def:hasProductPackage ?pakket ;
+            def:isPartOf ?product .
+          [] def:hasProductPackage ?pakket ;
+            def:isPartOf ?missingProduct .
+          FILTER(?product != ?missingProduct)
+          FILTER NOT EXISTS {
+            GRAPH ?g {
+              ?choice a def:PDSProductChoice .
+            }
+            BIND( IRI( STRBEFORE( STR(?choice), "_" ) ) AS ?choice_alt )
+            ?choice_alt def:isPartOf ?missingProduct .
+          }
+          BIND(
+            REPLACE(
+                STR(?missingProduct),
+                "^.*/",
+                ""
+            ) AS ?missingProduct_mes
+          )
+          BIND(
+            REPLACE(
+                STR($this),
+                "^.*/",
+                ""
+            ) AS ?this_mes
+          )
+          BIND(
+            REPLACE(
+                STR(?pakket),
+                "^.*/",
+                ""
+            ) AS ?pakket_mes
+          )
+        }
+    """ .
+  ## Franchise-constraint specifieke subshapes.
+  constraint:FranConstraint
+    a sh:SPARQLConstraint;
+    sh:select """
+      select $this ?franchise
+      where {
+        graph ?g{
+          $this def:hasFranchise ?franchise;
+          BIND(STRAFTER(STR($this), "_") AS ?clientName)
+          optional
+          {
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.01_", ?clientName)) AS ?ik03001)
+            ?ik03001 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          union
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.02_", ?clientName)) AS ?ik03002)
+            ?ik03002 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          union
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.03_", ?clientName)) AS ?ik03003)
+            ?ik03003 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          }
+          filter(bound(?premiumPercentage))
+        }
+        graph graph:DutchPensionLaw{
+          id:ublb-20250101-10aa-1
+            def:dimension-minimumPercentage ?minPremiumPerc_1;
+            def:dimension-maximumPercentage ?maxPremiumPerc_2;
+            def:hasFranchise ?baseMinimumValueLow.
+          id:ublb-20250101-10aa-2
+            def:dimension-maximumPercentage ?maxPremiumPerc_3;
+            def:hasFranchise ?baseMinimumValueMid.
+          id:ublb-20250101-10aa-3
+            def:dimension-maximumPercentage ?maxPremiumPerc_4;
+            def:hasFranchise ?ref.
+          ?ref def:hasFranchise ?baseMinimumValueHigh.
+        }
+        filter(?premiumPercentage > ?minPremiumPerc_1 && ?premiumPercentage <= ?maxPremiumPerc_4)
+        BIND(
+          IF(
+            (?premiumPercentage > ?maxPremiumPerc_3)&&(?premiumPercentage <= ?maxPremiumPerc_4),
+            ?baseMinimumValueHigh,
+            IF(
+              (?premiumPercentage > ?maxPremiumPerc_2)&&(?premiumPercentage <= ?maxPremiumPerc_3),
+              ?baseMinimumValueMid,
+              ?baseMinimumValueLow
+              )
+          ) AS ?minimumValue
+        )
+        filter(?franchise < ?minimumValue)
+      }""";
+    sh:message "Franchise bedrag {?franchise} is wettelijk te laag gebaseerd op de Wet op loonbelasting 1964, artikel 18a lid 3."@nl;
+    sh:prefixes def:,graph:.
+  constraint:FranConstraintStrict
+    a sh:SPARQLConstraint;
+    sh:message "Franchise bedrag is niet gelijk aan het bedrag van de Wet gebaseerd op de Wet op loonbelasting 1964, artikel 18a lid 3."@nl;
+    sh:select """
+      select $this ?franchise
+      where {
+        graph ?g{
+          $this def:hasFranchise ?franchise;
+          BIND(STRAFTER(STR($this), "_") AS ?clientName)
+          optional
+          {
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.01_", ?clientName)) AS ?ik03001)
+            ?ik03001 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          union
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.02_", ?clientName)) AS ?ik03002)
+            ?ik03002 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          union
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.03_", ?clientName)) AS ?ik03003)
+            ?ik03003 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          }
+          filter(bound(?premiumPercentage))
+        }
+        graph graph:DutchPensionLaw{
+          id:ublb-20250101-10aa-1
+            def:dimension-minimumPercentage ?minPremiumPerc_1;
+            def:dimension-maximumPercentage ?maxPremiumPerc_2;
+            def:hasFranchise ?baseMinimumValueLow.
+          id:ublb-20250101-10aa-2
+            def:dimension-maximumPercentage ?maxPremiumPerc_3;
+            def:hasFranchise ?baseMinimumValueMid.
+          id:ublb-20250101-10aa-3
+            def:dimension-maximumPercentage ?maxPremiumPerc_4;
+            def:hasFranchise ?ref.
+          ?ref def:hasFranchise ?baseMinimumValueHigh.
+        }
+        filter(?premiumPercentage > ?minPremiumPerc_1 && ?premiumPercentage <= ?maxPremiumPerc_4)
+        BIND(
+          IF(
+            (?premiumPercentage > ?maxPremiumPerc_3)&&(?premiumPercentage <= ?maxPremiumPerc_4),
+            ?baseMinimumValueHigh,
+            IF(
+              (?premiumPercentage > ?maxPremiumPerc_2)&&(?premiumPercentage <= ?maxPremiumPerc_3),
+              ?baseMinimumValueMid,
+              ?baseMinimumValueLow
+              )
+          ) AS ?minimumValue
+        )
+        filter(?franchise != ?minimumValue)
+      }""";
+    sh:prefixes def:,graph:.
+  constraint:PremPercConstraint
+    a sh:SPARQLConstraint;
+    sh:message "Premie percentage {?premiumPercentage} te hoog gebaseerd op de Wet."@nl;
+    sh:prefixes def:,graph:;
+    sh:select """
+      select $this ?premiumPercentage
+      where {
+        $this def:hasPremiumPercentage ?premiumPercentage.
+        [] def:hasConstraintCheck constraint:PremPercConstraint.
+        id:wlb-20250101-18a-1-1
+          def:hasPremiumPercentage ?maxPremiumPercentage.
+        filter(?premiumPercentage > ?maxPremiumPercentage || ?premiumPercentage < 0)
+      }""".
+  ## Executed in Python during graph generation.
+  rule:FranchiseStrict
+    a sh:SPARQLRule;
+    sh:prefixes
+      def:,
+      rdf:,
+      id:;
+    sh:construct """
+      construct {
+        $this
+          def:hasFranchise ?franchise;
+          def:hasFranchiseLineage ?lineage.
+        ?lineage
+          rdf:subject $this;
+          rdf:predicate def:hasFranchise;
+          rdf:object ?franchise;
+          def:calculatedOn ?now;
+          def:calculatedAccordingTo
+            id:ublb-20250101-10aa,
+            id:wlb-20250101-18a-3,
+            id:wlb-20250101-18a-1.
+      }
+      where {
+        graph ?g{
+          $this a def:FranConstraintStrict;
+          BIND(STRAFTER(STR($this), "_") AS ?clientName)
+          optional
+          {
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.01_", ?clientName)) AS ?ik03001)
+            ?ik03001 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          union
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.02_", ?clientName)) AS ?ik03002)
+            ?ik03002 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          union
+          {
+            BIND(IRI(CONCAT("https://data.achmea.nl/id/IK030.03_", ?clientName)) AS ?ik03003)
+            ?ik03003 def:hasPremiumPercentage ?premiumPercentage .
+          }
+          }
+          filter(bound(?premiumPercentage))
+        }
+        graph graph:DutchPensionLaw{
+          id:ublb-20250101-10aa-1
+            def:dimension-minimumPercentage ?minPremiumPerc_1;
+            def:dimension-maximumPercentage ?maxPremiumPerc_2;
+            def:hasFranchise ?baseMinimumValueLow.
+          id:ublb-20250101-10aa-2
+            def:dimension-maximumPercentage ?maxPremiumPerc_3;
+            def:hasFranchise ?baseMinimumValueMid.
+          id:ublb-20250101-10aa-3
+            def:dimension-maximumPercentage ?maxPremiumPerc_4;
+            def:hasFranchise ?ref.
+          ?ref def:hasFranchise ?baseMinimumValueHigh.
+        }
+        filter(?premiumPercentage > ?minPremiumPerc_1 && ?premiumPercentage <= ?maxPremiumPerc_4)
+        BIND(
+          IF(
+            (?premiumPercentage > ?maxPremiumPerc_3)&&(?premiumPercentage <= ?maxPremiumPerc_4),
+            ?baseMinimumValueHigh,
+            IF(
+              (?premiumPercentage > ?maxPremiumPerc_2)&&(?premiumPercentage <= ?maxPremiumPerc_3),
+              ?baseMinimumValueMid,
+              ?baseMinimumValueLow
+              )
+          ) AS ?franchise
+        )
+        bind(now() as ?now)
+        bind(iri(concat(str(id:),'lineage-',struuid())) as ?lineage)
+      }
+      """.
+
+  # Validatieshapes voor de ProductCatalogue graaf.
+  def:ProductChoiceShape
+    a sh:NodeShape ;
+    sh:targetClass def:ProductChoice;
+    sh:property
+      shp:hasProductCatalogueVersion,
+      shp:hasSpecificityIsDutch,
+      shp:hasProductExplanationIsDutchorInteger,
+      shp:hasPensioensRuling,
+      shp:partOfAProduct,
+      shp:hasProductPackage.
+  def:ProductVersionShape
+    a sh:NodeShape ;
+    sh:targetClass def:ProductVersion ;
+    sh:property
+      shp:ProductVersionhasLabel,
+      shp:ProductVersionhasDate,
+      shp:ProductVersionhasAuthor,
+      shp:ProductVersionhasStatus,
+      shp:ProductVersionhasAdditionalExplanation.
+  ## Flags absence of a catalogue version.
+  shp:hasProductCatalogueVersion
+    a sh:PropertyShape;
+    sh:path def:ProductChoice;
+    sh:severity sh:Violation ;
+    sh:sparql constraint:hasProductCatalogueVersion_sparql .
+  constraint:hasProductCatalogueVersion_sparql
+    a sh:SPARQLConstraint;
+    sh:select """
+      PREFIX def: <https://data.achmea.nl/def/>
+      SELECT $this WHERE {
+        $this a def:ProductChoice .
+        FILTER NOT EXISTS { $this def:hasProductCatalogueVersion ?versie }
+      }
+    """ ;
+    sh:message "Elke productkeuze moet invulling hebben voor de laatste catalogusversie."@nl .
+  ## Checks that 'G/S/A' is a Dutch text.
+  shp:hasSpecificityIsDutch
+    a sh:PropertyShape ;
+    sh:path def:hasSpecificity ;
+    sh:languageIn shp:DutchLanguage_literal;
+    sh:minCount 1 ;
+    sh:message "Het veld 'G/S/A' moet een Nederlandse tekst bevatten."@nl.
+  shp:DutchLanguage_literal
+    rdf:first "nl" ;
+    rdf:rest rdf:nil .
+  shp:Language_literal
+    rdf:first "nl" ;
+    rdf:rest shp:Language_literal_2 .
+  shp:Language_literal_2
+    rdf:first "en" ;
+    rdf:rest rdf:nil .
+  ## 'Keuzes/invulling' moet een Nederlandse tekst of geheel getal zijn.
+  shp:hasProductExplanationIsDutchorInteger
+    a sh:PropertyShape;
+    sh:path def:hasProductExplanation;
+    sh:or shp:DutchOrInteger;
+    sh:minCount 1;
+    sh:message "Het veld 'Keuzes/invulling' moet een Nederlandse tekst of geheel getal bevatten."@nl .
+  shp:DutchOrInteger
+    rdf:first shp:IsInteger ;
+    rdf:rest shp:DutchOrIntegerTail .
+  shp:DutchOrIntegerTail
+    rdf:first shp:IsDutch ;
+    rdf:rest rdf:nil .
+  shp:IsInteger
+    sh:datatype xsd:integer.
+  shp:IsDutch
+    sh:languageIn shp:DutchLanguage_literal.
+  ## Elk product moet deeluitmaken van een pensioensregeling (FPR/SPR etc.)
+  shp:hasPensioensRuling
+    a sh:PropertyShape;
+    sh:path def:hasPensionRuling ;
+    sh:class def:PensionRuling ;
+    sh:minCount 1;
+    sh:message "Elke Product keuze moet deel uitmaken van een pensioensregeling (FPR/SPR etc.)."@nl .
+  ## Elke keuze moet deel uitmaken van een Product."
+  shp:partOfAProduct
+    a sh:PropertyShape;
+    sh:path def:isPartOf;
+    sh:class def:Product;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:message "Elke keuze moet deel uitmaken van een Product."@nl .
+  shp:hasProductPackage
+    a sh:PropertyShape;
+    sh:path def:hasProductPackage;
+    sh:class def:ProductPackage;
+    sh:message "Als een product deel uitmaakt van een pakket, dan moet dat pakket gedefinieërd zijn."@nl.
+  # Product versie shacl shapes.
+  shp:ProductVersionhasLabel
+    a sh:PropertyShape;
+    sh:path rdfs1:label;
+    sh:languageIn
+      shp:Language_literal;
+    sh:minCount 1;
+    sh:message "Een Product versie moet een label hebben."@nl.
+  shp:ProductVersionhasDate
+    a sh:PropertyShape;
+    sh:path def:hasProductCatalogueVersionDate ;
+    sh:datatype xsd:date ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Elke Product versie moet een versiedatum hebben."@nl .
+  shp:ProductVersionhasAuthor
+    a sh:PropertyShape;
+    sh:path def:hasAuthor ;
+    sh:languageIn shp:DutchLanguage_literal;
+    sh:minCount 1 ;
+    sh:message "Elke Product versie moet ten minste één auteur hebben."@nl .
+  shp:ProductVersionhasStatus
+    a sh:PropertyShape;
+    sh:path def:hasStatus ;
+    sh:languageIn shp:DutchLanguage_literal;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:pattern "^(Gepubliceerd|Concept|Verouderd)$" ;
+    sh:message "Elke Product versie moet een geldige status hebben: 'Gepubliceerd', 'Concept' of 'Verouderd'."@nl .
+  shp:ProductVersionhasAdditionalExplanation
+    a sh:PropertyShape;
+    sh:path def:hasAdditionalExplanation ;
+    sh:languageIn shp:DutchLanguage_literal;
+    sh:minCount 1 ;
+    sh:message "Elke Product versie moet een toelichting hebben."@nl.
+
+  # Validatie-shapes voor wetgraaf.
+  # Shape objecten, categorizeren verschillende nodes in de wetgraaf.
+  def:LawShape
+    a sh:NodeShape;
+    sh:targetClass
+      def:Law;
+    sh:property
+      shp:bwbrcode,
+      shp:LawhasLabel,
+      shp:hasLawVersion.
+  def:LawVersionShape
+    a sh:NodeShape;
+    sh:targetClass
+      def:LawVersion;
+    sh:property
+      shp:holdsSince,
+      shp:source,
+      shp:LawhasLabel,
+      shp:hasArticle.
+  def:LawArticleShape
+    a sh:NodeShape;
+    sh:targetClass
+      def:LawArticle;
+    sh:property
+      shp:source,
+      shp:LawhasLabel.
+  def:LawArticleSectionShape
+    a sh:NodeShape;
+    sh:targetClass
+      def:LawArticleSection;
+    sh:property
+      shp:LawhasLabel,
+      shp:hasText.
+  ## SHACL constraints gebruikt in shape objecten.
+  shp:hasLawVersion
+    a sh:PropertyShape;
+    sh:path def:hasLawVersion;
+    sh:minCount 1;
+    sh:message "Een wet moet minimaal één versie-datum hebben."@nl.
+  shp:bwbrcode
+    a sh:PropertyShape;
+    sh:path rdfs1:bwbrcode;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+    sh:message "Een wet moet een BWBR code hebben."@nl.
+  shp:LawhasLabel
+    a sh:PropertyShape;
+    sh:path rdfs1:label;
+    sh:languageIn shp:DutchLanguage_literal;
+    sh:minCount 1;
+    sh:message "Een wet moet een label hebben."@nl.
+  shp:holdsSince
+    a sh:PropertyShape;
+    sh:path def:holdsSince;
+    sh:datatype xsd:date;
+    sh:minCount 1;
+    sh:message "Een wetsversie moet een geldigheidsdatum hebben."@nl.
+  shp:source
+    a sh:PropertyShape;
+    sh:path dcterms:source;
+    sh:datatype xsd:anyURI;
+    sh:minCount 1;
+    sh:message "Een wet moet een bron hebben."@nl.
+  shp:hasArticle
+    a sh:PropertyShape;
+    sh:path def:hasArticle;
+    sh:minCount 1;
+    sh:message "Een wet moet minimaal één artikel hebben."@nl.
+  shp:hasText
+    a sh:PropertyShape;
+    sh:path def:hasText;
+    sh:languageIn shp:DutchLanguage_literal;
+    sh:minCount 1;
+    sh:message "Een artikel sectie moet geldige Nederlandse tekst bevatten."@nl.
+}
+
+# PDC kennis, instance-graaf (leeg in template).
+graph:ProductCatalogue {
+}
+
+# Wet instance-graaf.
+graph:DutchPensionLaw {
+  # Wet op loonbelasting 1964
+  id:wlb
+    a def:Law;
+    rdfs1:label 'Wet op Loonbelasting 1964'@nl;
+    rdfs1:bwbrcode "BWBR0002471"^^xsd:string;
+    def:hasLawVersion id:wlb-20250101.
+  id:wlb-20250101
+    a def:LawVersion;
+    rdfs1:label 'Wet op Loonbelasting 1964, versie 1 januari 2025'@nl;
+    def:holdsSince '2025-01-01'^^xsd:date;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0002471/2025-01-01'^^xsd:anyURI;
+    def:hasArticle
+      id:wlb-20250101-38r,
+      id:wlb-20250101-18a.
+  id:wlb-20250101-18a
+    a def:LawArticle;
+    rdfs1:label 'Wet op loonbelasting 1964, artikel 18a'@nl;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0002471/2025-01-01/#HoofdstukIIB_Artikel18a'^^xsd:anyURI;
+    def:hasSection
+      id:wlb-20250101-18a-1,
+      id:wlb-20250101-18a-3.
+  id:wlb-20250101-18a-1
+    a def:LawArticleSection;
+    rdfs1:label 'Wet op loonbelasting 1964, Artikel 18a lid 1'@nl;
+    def:hasText """De premie per dienstjaar voor een ouderdomspensioen
+              en een partnerpensioen bij overlijden op of na pensioendatum bedraagt
+              ten hoogste {percentage}% van de pensionableearnings. Bij of krachtens algemene
+              maatregel van bestuur kunnen regels worden gesteld met betrekking
+              tot de kosten die zijn begrepen in de premie, bedoeld in de eerste zin."""@nl;
+    def:hasPremiumPercentage
+      id:wlb-20250101-18a-1-1.
+  id:wlb-20250101-18a-1-1
+    a qb:Observation;
+    sdmx-dimension:refPeriod '2025'^^xsd:gYear;
+    def:hasPremiumPercentage 30.0.
+  id:wlb-20250101-18a-3
+    a def:LawArticleSection;
+    rdfs1:label 'Wet op loonbelasting 1964, Artikel 18a lid 3'@nl;
+    def:hasText """De franchise, bedoeld in het tweede lid, bedraagt {franchise}. Dit bedrag wordt bij het
+                      begin van het kalenderjaar bij ministeriële regeling vervangen door een ander bedrag.
+                      Dit bedrag wordt berekend door de voor dat jaar geldende uitkeringen voor gehuwde
+                      personen zonder toeslag als omschreven in {id:aow-20250101-9-1ab, id:aow-20250101-9-5},
+                      vermeerderd met de vakantietoeslag, te vermenigvuldigen met de factor 100/75. Bij
+                      dienstbetrekkingen in deeltijd wordt dit bedrag verminderd overeenkomstig de deeltijdfactor.
+                      Bij of krachtens algemene maatregel van bestuur kan worden bepaald dat een lager bedrag
+                      in aanmerking kan worden genomen dan het bedrag, genoemd in de eerste zin {id:wlb-20250101-18a-1}, indien
+                      een lager percentage per dienstjaar wordt toegepast dan het percentage, genoemd in
+                      het eerste lid."""@nl;
+    def:hasContext
+      id:ublb-20250101-10aa;
+    def:hasFranchise
+      id:wlb-20250101-18a-3-1;
+    def:referencesTo
+      id:aow-20250101-9-1ab,
+      id:aow-20250101-9-5,
+      id:wlb-20250101-18a-1.
+  id:wlb-20250101-18a-3-1
+    a qb:Observation;
+    sdmx-dimension:refPeriod '2025'^^xsd:gYear;
+    def:hasFranchise 18475.
+  id:wlb-20250101-38r
+    a def:LawArticle;
+    rdfs1:label 'Wet op loonbelasting 1964, artikel 38r'@nl;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0002471/2025-01-01/#HoofdstukVIII_Artikel38r'^^xsd:anyURI;
+    def:hasSection
+      id:wlb-20250101-38r-1.
+  id:wlb-20250101-38r-1
+    a def:LawArticleSection;
+    rdfs1:label 'Wet op loonbelasting 1964, Artikel 38r lid 1'@nl;
+    def:hasText """Indien wordt voldaan aan de voorwaarden,
+                    genoemd in {id:PensionLaw-20250301-220e-1a,id:PensionLaw-20250301-220e-1b},
+                    of {id:wvbpr-20250301-214d-1a, id:wvbpr-20250301-214d-1b},
+                    wordt in afwijking in zoverre van {id:wlb-20250101-18a-1},
+                    de maximale premie per dienstjaar bepaald aan de hand van de volgende tabel."""@nl;
+    # Tabel met leeftijds en premie-percentage specifieke franchise waarden.
+    # Geldig voor klanten met een compensatieregeling, wordt hier later nog aan toegevoegd.
+    def:referencesTo
+      id:PensionLaw-20250301-220e-1a,
+      id:PensionLaw-20250301-220e-1b,
+      id:wvbpr-20250301-214d-1a,
+      id:wvbpr-20250301-214d-1b,
+      id:wlb-20250101-18a-1.
+  # Uitvoeringsbesluit loonbelasting 1965
+  id:ublb
+    a def:Law;
+    rdfs1:bwbrcode "BWBR0002489"^^xsd:string;
+    rdfs1:label "Uitvoeringsbesluit loonbelasting 1965"@nl;
+    def:hasLawVersion id:ublb-20250101.
+  id:ublb-20250101
+    a def:LawVersion;
+    rdfs1:label "UBLB 1965, versie 1 januari 2025"@nl;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0002489/2025-01-01'^^xsd:anyURI;
+    def:holdsSince '2025-01-01'^^xsd:date;
+    def:hasArticle id:ublb-20250101-10aa.
+  id:ublb-20250101-10aa
+    a def:LawArticle;
+    rdfs1:label "UBLB 1965, artikel 10aa"@nl;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0002489/2025-01-01/#Hoofdstuk4_Artikel10aa'^^xsd:anyURI;
+    def:holdsSince '2025-01-01'^^xsd:date;
+    def:hasText """Indien voor de toepassing van artikel 18a, eerste lid, van de wet een percentage per
+                  dienstjaar wordt toegepast van  meer dan {minimumPercentage} maar niet meer dan {maximumPercentage}
+                  wordt het in artikel 18a, derde lid, van de wet bedoelde bedrag vervangen door {Franchise}."""@nl;
+    def:referencesTo
+      id:wlb-20250101-18a-1,
+      id:wlb-20250101-18a-3;
+    def:hasValues
+      id:ublb-20250101-10aa-1,
+      id:ublb-20250101-10aa-2,
+      id:ublb-20250101-10aa-3;
+    rdfs1:label "Overzicht AOW-franchises en AOW-inbouwbedragen"@nl.
+  id:ublb-20250101-10aa-1
+    a qb:Observation;
+    sdmx-dimension:refPeriod '2025'^^xsd:gYear;
+    def:dimension-minimumPercentage 0.0;
+    def:dimension-maximumPercentage 27.216;
+    def:hasFranchise 14752.0.
+  id:ublb-20250101-10aa-2
+    a qb:Observation;
+    sdmx-dimension:refPeriod '2025'^^xsd:gYear;
+    def:dimension-minimumPercentage 27.216;
+    def:dimension-maximumPercentage 28.608;
+    def:hasFranchise 16655.0.
+  id:ublb-20250101-10aa-3
+    a qb:Observation;
+    sdmx-dimension:refPeriod '2025'^^xsd:gYear;
+    def:dimension-minimumPercentage 28.608;
+    def:dimension-maximumPercentage 30;
+    def:hasFranchise id:wlb-20250101-18a-3-1.
+  # Pensioenwet
+  id:PensionLaw
+    a def:Law;
+    rdfs1:label "Pensioenwet"@nl;
+    rdfs1:bwbrcode "BWBR0020809"^^xsd:string;
+    def:hasLawVersion id:PensionLaw-20250301.
+  id:PensionLaw-20250301
+    a def:LawVersion;
+    rdfs1:label "Pensioenwet, versie 10 maart 2025"@nl;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0020809'^^xsd:anyURI;
+    def:holdsSince '2025-03-01'^^xsd:date;
+    def:hasArticle
+      id:PensionLaw-20250301-17,
+      id:PensionLaw-20250301-220e.
+  id:PensionLaw-20250301-220e
+    a def:LawArticle;
+    rdfs1:label "Pensioenwet, artikel 220e, Overgangsrecht progressieve premie"@nl;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0020809/2025-03-01#Hoofdstuk9_Artikel220e'^^xsd:anyURI;
+    def:holdsSince '2025-03-01'^^xsd:date;
+    def:hasSection
+      id:PensionLaw-20250301-220e-1a,
+      id:PensionLaw-20250301-220e-1b.
+  id:PensionLaw-20250301-220e-1a
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 220e lid 1a"@nl;
+    def:hasText """In afwijking van {id:PensionLaw-20250301-17} mag de door of voor een deelnemer verschuldigde premie tot het moment van beëindiging
+                  van de deelneming een met de leeftijd oplopend percentage van het loon dat voor de
+                  pensioenberekening in aanmerking wordt genomen bedragen, mits: op de dag voorafgaand aan
+                  het tijdstip van inwerkingtreding van de {id:wtp-20240101} sprake was van een premieovereenkomst met een met de leeftijd oplopend premiepercentage
+                  of een uitkeringsovereenkomst als bedoeld in {id:PensionLaw-20250301-1}, zoals dat artikel luidde op de dag voorafgaand aan het tijdstip van inwerkingtreding
+                  van de Wet toekomst pensioenen, met een met de leeftijd oplopend premiepercentage
+                  ondergebracht bij een verzekeraar;"""@nl;
+    def:referencesTo
+      id:PensionLaw-20250301-17,
+      id:wtp-20240101,
+      id:PensionLaw-20250301-1.
+  id:PensionLaw-20250301-220e-1b
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 220e lid 1b"@nl;
+    def:hasText """In afwijking van {id:PensionLaw-20250301-17} mag de door of voor een deelnemer verschuldigde premie tot het moment van beëindiging
+                      van de deelneming een met de leeftijd oplopend percentage van het loon dat voor de
+                      pensioenberekening in aanmerking wordt genomen bedragen, mits: de deelneming van de
+                      deelnemer reeds was aangevangen waarbij de deelnemer pensioenaanspraken
+                      opbouwt, op de dag voordat voor nieuwe deelnemers een pensioenovereenkomst geldt waarbij
+                      de premie conform {id:PensionLaw-20250301-17} voor
+                      alle deelnemers een gelijk percentage van het loon dat voor de pensioenberekening
+                      in aanmerking wordt genomen bedraagt, doch uiterlijk op 31&nbsp;december 2026; en
+                      de pensioenovereenkomst niet het karakter heeft van een solidaire premieovereenkomst."""@nl;
+    def:referencesTo
+      id:PensionLaw-20250301-17.
+  id:PensionLaw-20250301-17
+    a def:LawArticle;
+    rdfs1:label "Pensioenwet, artikel 17, Gelijke premie"@nl;
+    def:holdsSince '2025-03-10'^^xsd:date;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0020809/2025-03-01#Hoofdstuk2_Artikel17'^^xsd:anyURI;
+    def:hasSection
+      id:PensionLaw-20250301-17-1,
+      id:PensionLaw-20250301-17-2,
+      id:PensionLaw-20250301-17-3,
+      id:PensionLaw-20250301-17-4,
+      id:PensionLaw-20250301-17-5.
+  id:PensionLaw-20250301-17-1
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 17 lid 1"@nl;
+    def:hasText """De door of voor een deelnemer verschuldigde premie voor pensioen op opbouwbasis
+                  bedraagt voor alle deelnemers een gelijk percentage van het loon dat
+                  voor de pensioenberekening in aanmerking wordt genomen."""@nl.
+  id:PensionLaw-20250301-17-2
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 17 lid 2"@nl;
+    def:hasText """De door of voor een deelnemer verschuldigde premie voor
+                  pensioen op risicobasis bedraagt bij een pensioenregeling uitgevoerd door een verplichtgesteld
+                  bedrijfstakpensioenfonds een gelijk percentage van het loon dat voor de pensioenberekening in aanmerking wordt genomen."""@nl.
+  id:PensionLaw-20250301-17-3
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 17 lid 3"@nl;
+    def:hasText """Voor verschillende vormen van pensioen en voor verschillende pensioenregelingen
+                  kunnen verschillende premies worden vastgesteld. Voor verschillende pensioenregelingen die worden
+                  uitgevoerd door hetzelfde verplichtgestelde bedrijfstakpensioenfonds kunnen geen verschillende
+                  premies worden vastgesteld indien die pensioenregelingen dezelfde of nagenoeg dezelfde inhoud hebben."""@nl.
+  id:PensionLaw-20250301-17-4
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 17 lid 4"@nl;
+    def:hasText """Het eerste en tweede lid zijn niet van toepassing op de premie voor vrijwillige pensioenregelingen."""@nl.
+  id:PensionLaw-20250301-17-5
+    a def:LawArticleSection;
+    rdfs1:label "Pensioenwet, artikel 17 lid 5"@nl;
+    def:hasText """De tweede zin van het derde lid is niet van toepassing indien bij
+                  een verplichtgesteld bedrijfstakpensioenfonds sprake is van een regeling die voor alle deelnemers geldt
+                  en de actuariële waarde van de uit die regeling voortvloeiende verplichtingen ten minste twee derde
+                  van de actuariële waarde van de uit het totaal van de pensioenregelingen van het bedrijfstakpensioenfonds
+                  anders dan regelingen voor nabestaanden- of arbeidsongeschiktheidspensioen, voortvloeiende verplichtingen
+                  met uitzondering van de uit de vrijwillige pensioenvoorzieningen voortvloeiende verplichtingen, betreft."""@nl.
+  id:PensionLaw-20250301-1
+    a def:LawArticle;
+    rdfs1:label "Pensioenwet, artikel 1, Definities"@nl;
+    def:holdsSince '2025-03-10'^^xsd:date;
+    dcterms:source 'https://wetten.overheid.nl/BWBR0020809/2025-03-01#Hoofdstuk1_Artikel1'^^xsd:anyURI.
+  # Wet AOW
+  id:aow
+    a def:Law;
+    rdfs1:bwbrcode "BWBR0002221"^^xsd:string;
+    rdfs1:label "Algemene Ouderdomswet"@nl;
+    def:hasLawVersion id:aow-20250101.
+  id:aow-20250101
+    a def:LawVersion;
+    rdfs1:label "Algemene Ouderdomswet, versie 1 januari 2025"@nl;
+    dcterms:source "https://wetten.overheid.nl/BWBR0002221/2021-01-01"^^xsd:anyURI;
+    def:holdsSince '2025-01-01'^^xsd:date;
+    def:hasArticle
+    id:aow-20250101-9.
+  id:aow-20250101-9
+    a def:LawArticle;
+    rdfs1:label "Algemene Ouderdomswet, artikel 9"@nl;
+    dcterms:source "https://wetten.overheid.nl/BWBR0002221/2021-01-01#HoofdstukIII_Paragraaf1_Artikel9"^^xsd:anyURI;
+    def:holdsSince '2025-01-01'^^xsd:date;
+    def:hasSection
+      id:aow-20250101-9-1ab,
+      id:aow-20250101-9-5.
+  id:aow-20250101-9-1ab
+    a def:LawArticleSection;
+    rdfs1:label "Algemene Ouderdomswet, artikel 9, lid 1ab"@nl;
+    def:hasText """1. Deze wet kent een bruto-ouderdomspensioen voor: a. de ongehuwde pensioengerechtigde; b. de gehuwde pensioengerechtigde."""@nl.
+  id:aow-20250101-9-5
+    a def:LawArticleSection;
+    rdfs1:label "Algemene Ouderdomswet, artikel 9, lid 5"@nl;
+    def:hasText """De bruto-ouderdomspensioenen worden zodanig vastgesteld, dat na aftrek van de in te
+                    houden loonbelasting en premie voor de volksverzekeringen, rekening houdend met de
+                    toepasselijke heffingskortingen voor een persoon van de pensioengerechtigde leeftijd
+                    en ouder, en van de inkomensafhankelijke bijdrage, bedoeld in artikel 41 van de Zorgverzekeringswet."""@nl.
+  # Wet Toekomst Pensioenen
+  id:wtp
+    a def:Law;
+    rdfs1:label "Wet Toekomst Pensioenen"@nl;
+    rdfs1:bwbrcode "BWBR0048328"^^xsd:string;
+    def:hasLawVersion id:wtp-20240101.
+  id:wtp-20240101
+    a def:LawVersion;
+    rdfs1:label "Wet Toekomst Pensioenen, versie 1 januari 2024"@nl;
+    dcterms:source "https://wetten.overheid.nl/BWBR0048328/2024-01-01"^^xsd:anyURI;
+    def:holdsSince '2024-01-01'^^xsd:date;
+    def:hasArticle
+      id:wtp-20240101-1.
+  # Wet verplichte beroepspensioenregeling
+  id:wvbpr
+    a def:Law;
+    rdfs1:label "Wet verplichte beroepspensioenregeling"@nl;
+    rdfs1:bwbrcode "BWBR0018831"^^xsd:string;
+    def:hasLawVersion id:wvbpr-20250301.
+  id:wvbpr-20250301
+    a def:LawVersion;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, versie 10 maart 2025"@nl;
+    dcterms:source "https://wetten.overheid.nl/BWBR0018831/2025-03-01"^^xsd:anyURI;
+    def:holdsSince '2025-03-01'^^xsd:date;
+    def:hasArticle
+    id:wvbpr-20250301-23,
+    id:wvbpr-20250301-214d.
+  id:wvbpr-20250301-214d
+    a def:LawArticle;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 214d, Overgangsrecht progressieve premie"@nl;
+    dcterms:source "https://wetten.overheid.nl/BWBR0018831/2025-03-01#Hoofdstuk8_Artikel214d"^^xsd:anyURI;
+    def:holdsSince '2025-03-01'^^xsd:date;
+    def:hasSection
+      id:wvbpr-20250301-214d-1a,
+      id:wvbpr-20250301-214d-1b.
+  id:wvbpr-20250301-214d-1a
+    a def:LawArticleSection;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 214d, lid 1a"@nl;
+    def:hasText """In afwijking van {id:wvbpr-20250301-23} mag de door of voor een
+                      deelnemer verschuldigde premie tot het moment van beëindiging
+                      van de deelneming een met de leeftijd oplopend percentage van het loon dat voor de
+                      pensioenberekening in aanmerking wordt genomen bedragen, mits: op de dag voorafgaand aan
+                      het tijdstip van inwerkingtreding van de {id:wtp-20240101} sprake was van een premieregeling met een met de leeftijd oplopend premiepercentage
+                      of een uitkeringsregeling als bedoeld in {id:wvbpr-20250301-1},
+                      zoals dat artikel luidde op de dag voorafgaand aan het tijdstip van inwerkingtreding
+                      van de Wet toekomst pensioenen, met een met de leeftijd oplopend premiepercentage
+                      ondergebracht bij een verzekeraar."""@nl;
+    def:referencesTo
+      id:wvbpr-20250301-23,
+      id:wtp-20240101,
+      id:wvbpr-20250301-1.
+  id:wvbpr-20250301-214d-1b
+    a def:LawArticleSection;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 214d, lid 1b"@nl;
+    def:hasText """In afwijking van {id:wvbpr-20250301-23} mag de door of voor een deelnemer verschuldigde premie tot het moment van beëindiging
+                      van de deelneming een met de leeftijd oplopend percentage van het loon dat voor de
+                      pensioenberekening in aanmerking wordt genomen bedragen, mits: de deelneming van de deelnemer
+                      reeds was aangevangen waarbij de deelnemer pensioenaanspraken
+                      opbouwt, op de dag voordat voor nieuwe deelnemers een beroepspensioenregeling geldt
+                      waarbij de premie conform {id:wvbpr-20250301-23} voor
+                      alle deelnemers een gelijk percentage van het loon dat voor de pensioenberekening
+                      in aanmerking wordt genomen bedraagt, doch uiterlijk op 31&nbsp;december 2026; en
+                      de beroepspensioenregeling niet het karakter heeft van een solidaire premieregeling."""@nl;
+    def:referencesTo
+      id:wvbpr-20250301-23.
+  id:wvbpr-20250301-23
+    a def:LawArticle;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 23, Premieovereenkomst"@nl;
+    dcterms:source "https://wetten.overheid.nl/BWBR0018831/2025-03-01#Hoofdstuk3_Artikel23"^^xsd:anyURI;
+    def:holdsSince '2025-03-10'^^xsd:date;
+    def:hasSection
+      id:wvbpr-20250301-23-1,
+      id:wvbpr-20250301-23-2,
+      id:wvbpr-20250301-23-3.
+  id:wvbpr-20250301-23-1
+    a def:LawArticleSection;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 23 lid 1, "@nl;
+    def:hasText """De door of voor een deelnemer verschuldigde premie bedraagt voor alle deelnemers een gelijk percentage van de gerealiseerde omzet,
+                      het gerealiseerde inkomen of het gerealiseerde loon dat voor de pensioenberekening in aanmerking wordt genomen."""@nl.
+  id:wvbpr-20250301-23-2
+    a def:LawArticleSection;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 23 lid 2"@nl;
+    def:hasText """Voor verschillende vormen van pensioen en voor verschillende pensioenregelingen kunnen verschillende premies worden vastgesteld."""@nl.
+  id:wvbpr-20250301-23-3
+    a def:LawArticleSection;
+    rdfs1:label "Wet verplichte beroepspensioenregeling, artikel 23 lid 3"@nl;
+    def:hasText """Het eerste lid is niet van toepassing op de premie voor vrijwillige pensioenregelingen."""@nl.
+}

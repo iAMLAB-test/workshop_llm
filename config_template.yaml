@@ -1,0 +1,6 @@
+# This is a template configuration file for the Azure OpenAI API.
+# Fill in the placeholders with your actual configuration values.
+# Then save the file as 'config.yaml' in the same directory.
+API_KEY: [Enter your API key here]
+AZURE_ENDPOINT: [Enter your Azure endpoint here]
+API_VERSION: [Enter your API version here]
