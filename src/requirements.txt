@@ -1,7 +1,9 @@
 openai
 langchain
 langchain-community
+langchain-huggingface
 tiktoken
-sentence-transformers
+networkx
+rdflib
 python-dotenv
 faiss-cpu
