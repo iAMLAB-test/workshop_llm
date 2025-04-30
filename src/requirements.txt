@@ -3,11 +3,12 @@ langchain
 langchain-community
 langchain-huggingface
 langchain_openai
+langchain_core
 tiktoken
 rdflib
 python-dotenv
 faiss-cpu
 numpy
 scikit-learn
-time
-textwrap
+ipykernel
+ipywidgets

@@ -6,14 +6,17 @@ import glob
 import os
 import re
 import textwrap
+import time
 from typing import Union
 
 import tiktoken
 import yaml
+from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.combine_documents.base import BaseCombineDocumentsChain
-from langchain.chains.question_answering import load_qa_chain
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.callbacks import get_openai_callback
 from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 from openai import AzureOpenAI
 from openai.types.chat.chat_completion import ChatCompletion
@@ -106,7 +109,7 @@ def gpt_4o_mini(user_message: str, law_text: str = "") -> ChatCompletion:
     return response
 
 
-def text_embedding_3_large(text_list: list = []) -> CreateEmbeddingResponse:
+def text_embedding_3_large(text_list: list) -> CreateEmbeddingResponse:
     """
     Function to call the Azure OpenAI text_embedding_3_large embedder model.
     Args:
@@ -196,7 +199,7 @@ def topk(store, question: str, k: int = 5) -> list:
 
 def rag_executor(
     question: str, store=MXBAI_STORE_NONGRAPH
-) -> Union[str, list, BaseCombineDocumentsChain]:
+) -> Union[str, list, BaseCombineDocumentsChain, dict]:
     """
     Uses RAG to answer a question about a law text.
     Args:
@@ -205,7 +208,10 @@ def rag_executor(
     Returns:
         str: The answer to the question.
         list: The most relevant documents retrieved.
+        BaseCombineDocumentsChain: The chain used to combine documents.
+        dict: Performance metrics.
     """
+    start = time.time()
     # 1) search both stores
     hits = topk(store, question)
 
@@ -221,9 +227,14 @@ def rag_executor(
         azure_endpoint=config["AZURE_ENDPOINT"],
         api_version=config["API_VERSION_DECODER"],
     )
-    qa_chain = load_qa_chain(llm, chain_type="stuff")
-    return (
-        qa_chain.run(input_documents=retrieved_docs, question=question),
-        list(retrieved_docs),
-        qa_chain,
+    prompt = ChatPromptTemplate.from_template(
+        "Use the following context to answer the question.\n\n{context}\n\nQuestion: {question}"
     )
+    qa_chain = create_stuff_documents_chain(llm, prompt)
+    performance_cache = {}
+    with get_openai_callback() as cb:
+        answer = qa_chain.invoke({"context": retrieved_docs, "question": question})
+        performance_cache["in_tokens"] = cb.prompt_tokens
+        performance_cache["out_tokens"] = cb.completion_tokens
+        performance_cache["elapsed"] = time.time() - start
+    return (answer, list(retrieved_docs), qa_chain, performance_cache)
