@@ -24,9 +24,9 @@ From an empty source folder in which you will run the notebook, run the followin
 | **1. Layout inspection** | Peek into raw Dutch law texts and tokenise articles. |
 | **2. Naïve retrieval**   | Compare whole-law prompting vs. article-loop prompting; record **token-cost, latency, accuracy**. |
 | **3. Embeddings intro**  | Cosine-distance demo with different encoders → `text-embedding-3-large` → `mixedbread-ai/mxbai-embed-large`. |
-| **5. Vectore stores and RAG query chain**   | Retrieve top-5 articles → feed into GPT-4o-mini for retrieval questions. |
-| **6. RAG using a knowledge graph**    | Advantages of using linked-data-based RAG. |
-| **7. Wrap-up**           | Key takeaways & next steps. |
+| **4. Vectore stores and RAG query chain**   | Retrieve top-5 articles → feed into GPT-4o-mini for retrieval questions. |
+| **5. RAG using a knowledge graph**    | Advantages of using linked-data-based RAG. |
+| **6. Wrap-up**           | Key takeaways & next steps. |
 
 ---
 
