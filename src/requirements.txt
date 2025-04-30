@@ -2,8 +2,12 @@ openai
 langchain
 langchain-community
 langchain-huggingface
+langchain_openai
 tiktoken
-networkx
 rdflib
 python-dotenv
 faiss-cpu
+numpy
+scikit-learn
+time
+textwrap

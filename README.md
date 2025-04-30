@@ -32,9 +32,9 @@ From an empty source folder in which you will run the notebook, run the followin
 Using `config_template.yaml` fill it's contexts (provided seperately) and save under `config.yaml`:
 2. **Configure environment**
    ```bash
-   API_KEY: [Enter your API key here]
+   API_KEY_DECODER: [Enter your API key here]
    AZURE_ENDPOINT: [Enter your Azure endpoint here]
-   API_VERSION: [Enter your API version here]
+   API_VERSION_DECODER: [Enter your API version here]
    ```
 
 ---

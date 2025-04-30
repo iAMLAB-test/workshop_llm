@@ -3,52 +3,69 @@ Utils used in the workshop notebook.
 """
 
 import glob
-import json
 import os
 import re
 import textwrap
+from typing import Union
 
 import tiktoken
 import yaml
+from langchain.chains.combine_documents.base import BaseCombineDocumentsChain
+from langchain.chains.question_answering import load_qa_chain
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 from openai import AzureOpenAI
 from openai.types.chat.chat_completion import ChatCompletion
+from openai.types.create_embedding_response import CreateEmbeddingResponse
 
 # 1) Load the Azure OpenAI API key and endpoint from config.yaml, create the API object.
 parent_dir = os.path.dirname(os.path.dirname(__file__))
 with open(os.path.join(parent_dir, "config.yaml"), "r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
-client = AzureOpenAI(
-    api_key=config["API_KEY"],
+
+client_decoder = AzureOpenAI(
+    api_key=config["API_KEY_DECODER"],
     azure_endpoint=config["AZURE_ENDPOINT"],
-    api_version=config["API_VERSION"],
+    api_version=config["API_VERSION_DECODER"],
+)
+client_encoder = AzureOpenAI(
+    api_key=config["API_KEY_ENCODER"],
+    azure_endpoint=config["AZURE_ENDPOINT"],
+    api_version=config["API_VERSION_ENCODER"],
 )
 
-# 2) Define your tool (function) schema
-tool_schema = {
-    "type": "function",
-    "function": {
-        "name": "multiplier",
-        "parameters": {
-            "type": "object",
-            "description": "Multiply two numbers.",
-            "properties": {
-                "x": {
-                    "type": "integer",
-                    "description": "First number to multiply, must be integer or float.",
-                },
-                "y": {
-                    "type": "integer",
-                    "description": "First number to multiply, must be integer or float.",
-                },
-            },
-            "required": ["x", "y"],
-        },
-    },
-}
-
-SYSTEM = """The text between triple backtics is a Dutch law text, I will ask retrieval-based questions about it: ```{law_text}```"""
+SYSTEM_DECODER = """The text between triple backtics is a Dutch law text,
+    I will ask retrieval-based questions about it: ```{law_text}```"""
+SYSTEM_ENCODER = """The text between triple backtics is a Dutch law text, I will
+    ask retrieval-based questions about it, embed it for that purpose: ```{law_text}```"""
 PRICE_PER_1K_INPUT = 0.0003  # <-- adjust to your contract
 PRICE_PER_1K_OUTPUT = 0.0012
+
+# Encoder models and vector stores.
+MXBAI_EMBEDDINGS = HuggingFaceEmbeddings(
+    model_name="mixedbread-ai/mxbai-embed-large-v1", model_kwargs={"device": "cpu"}
+)
+AZURE_EMBEDDINGS = AzureOpenAIEmbeddings(
+    deployment="text-embedding-3-large",  # deployment name in your Azure portal
+    openai_api_key=config["API_KEY_ENCODER"],
+    azure_endpoint=config["AZURE_ENDPOINT"],
+    api_version=config["API_VERSION_ENCODER"],
+)
+MXBAI_STORE_NONGRAPH = FAISS.load_local(
+    os.path.join(
+        parent_dir, f"src/data/vector_stores/mxbai-embed-large-v1_nongraph.index"
+    ),
+    MXBAI_EMBEDDINGS,
+    allow_dangerous_deserialization=True,
+)
+AZURE_STORE_NONGRAPH = FAISS.load_local(
+    os.path.join(
+        parent_dir, f"src/data/vector_stores/text-embedding-3-large_nongraph.index"
+    ),
+    AZURE_EMBEDDINGS,
+    allow_dangerous_deserialization=True,
+)
 
 
 def split_articles(law_text):
@@ -69,34 +86,37 @@ def split_articles(law_text):
     return result
 
 
-def gpt_4o_mini(
-    user_message: str, system_message: str = "", tool_schema: dict = {}
-) -> ChatCompletion:
+def gpt_4o_mini(user_message: str, law_text: str = "") -> ChatCompletion:
     """
     Function to call the Azure OpenAI API with the gpt-4o-mini model.
     Args:
-        system_message (str): The system message to set the context.
+        law_text (str): The law text to use as context.
         user_message (str): The user message to send to the model.
     Returns:
         str: The model's response.
     """
-    if len(tool_schema) > 0:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",  # deployment name
-            messages=[
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": user_message},
-            ],
-            tools=[tool_schema],
-        )
-    else:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",  # deployment name
-            messages=[
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": user_message},
-            ],
-        )
+    system_message = SYSTEM_DECODER.format(law_text=law_text)
+    response = client_decoder.chat.completions.create(
+        model="gpt-4o-mini",  # deployment name
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message},
+        ],
+    )
+    return response
+
+
+def text_embedding_3_large(text_list: list = []) -> CreateEmbeddingResponse:
+    """
+    Function to call the Azure OpenAI text_embedding_3_large embedder model.
+    Args:
+        text_list (list): The user message to send to the model.
+    Returns:
+        str: The model's response.
+    """
+    response = client_encoder.embeddings.create(
+        model="text-embedding-3-large", input=text_list  # deployment name
+    )
     return response
 
 
@@ -134,13 +154,6 @@ def count_tokens_in_docs():
     return f"\nTotal tokens across all files: {total_tokens}"
 
 
-def num_tokens(text: str, enc=tiktoken.encoding_for_model("gpt-4o-mini")) -> int:
-    """
-    Returns the number of tokens in a string using the specified encoding.
-    """
-    return len(enc.encode(text))
-
-
 def estimate_cost(in_tokens: int, out_tokens: int = 0) -> float:
     """
     Estimate the cost of a request to the OpenAI API based on the number of input and output tokens.
@@ -150,12 +163,12 @@ def estimate_cost(in_tokens: int, out_tokens: int = 0) -> float:
     ) * PRICE_PER_1K_OUTPUT
 
 
-def show_metrics(
+def llm_metrics(
     label: str,
     in_tokens: int,
     out_tokens: int,
     elapsed: float,
-):
+) -> dict:
     """
     Show performance metrics for an API call
     """
@@ -166,14 +179,7 @@ def show_metrics(
         "USD cost": round(estimate_cost(in_tokens, out_tokens), 6),
         "elapsed seconds": round(elapsed, 3),
     }
-    print(json.dumps(metrics, indent=2))
-
-
-def multiplier(x: int, y: int) -> int:
-    """
-    Multiplier function to be used as a tool in the API call.
-    """
-    return x * y
+    return metrics
 
 
 def wrap_at_spaces(text: str, width: int) -> str:
@@ -181,3 +187,43 @@ def wrap_at_spaces(text: str, width: int) -> str:
     Wraps text at the nearest whitespace ≤ width.
     """
     return textwrap.fill(text, width=width)
+
+
+def topk(store, question: str, k: int = 5) -> list:
+    """Return (docs, scores) for the k nearest neighbours."""
+    return store.similarity_search_with_score(question, k=k)
+
+
+def rag_executor(
+    question: str, store=MXBAI_STORE_NONGRAPH
+) -> Union[str, list, BaseCombineDocumentsChain]:
+    """
+    Uses RAG to answer a question about a law text.
+    Args:
+        question (str): The question to ask.
+        store: The vector store to use for retrieval.
+    Returns:
+        str: The answer to the question.
+        list: The most relevant documents retrieved.
+    """
+    # 1) search both stores
+    hits = topk(store, question)
+
+    # 2) keep the five best overall (lowest distance score)
+    hits = sorted(hits, key=lambda x: x[1])[:5]
+    retrieved_docs = [doc for doc, _ in hits]
+
+    # 3) stuff those docs into a QA chain and ask the LLM
+    llm = AzureChatOpenAI(
+        deployment_name="gpt-4o-mini",  # your chat deployment
+        temperature=0,
+        openai_api_key=config["API_KEY_DECODER"],
+        azure_endpoint=config["AZURE_ENDPOINT"],
+        api_version=config["API_VERSION_DECODER"],
+    )
+    qa_chain = load_qa_chain(llm, chain_type="stuff")
+    return (
+        qa_chain.run(input_documents=retrieved_docs, question=question),
+        list(retrieved_docs),
+        qa_chain,
+    )
