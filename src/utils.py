@@ -45,7 +45,7 @@ SYSTEM_ENCODER = """The text between triple backtics is a Dutch law text, I will
 PRICE_PER_1K_INPUT = 0.0003  # <-- adjust to your contract
 PRICE_PER_1K_OUTPUT = 0.0012
 
-# Encoder models and vector stores.
+# Encoder models and vector stores, can be sped up by using a GPU.
 MXBAI_EMBEDDINGS = HuggingFaceEmbeddings(
     model_name="mixedbread-ai/mxbai-embed-large-v1", model_kwargs={"device": "cpu"}
 )
@@ -137,7 +137,7 @@ def count_tokens(text: str, encoding) -> int:
 
 def count_tokens_in_docs():
     """
-    Count the number of tokens in all text files in the data/docs directory.
+    Count the number of tokens in all text files in the data/texts directory.
     Returns:
         str: A string with the total number of tokens across all files.
     """
@@ -147,7 +147,7 @@ def count_tokens_in_docs():
     encoding = tiktoken.encoding_for_model(model)
 
     total_tokens = 0
-    for filepath in glob.glob("data/docs/*.txt"):
+    for filepath in glob.glob("data/texts/*.txt"):
         with open(filepath, "r", encoding="utf-8") as f:
             text = f.read()
         n_tokens = count_tokens(text, encoding)
