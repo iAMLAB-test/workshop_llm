@@ -47,4 +47,5 @@ numpy
 scikit-learn
 ipykernel
 ipywidgets
+rdflib
 ```
