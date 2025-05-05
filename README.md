@@ -42,4 +42,22 @@ From an empty source folder in which you will run the notebook, run the followin
 
 ## 🛠 Dependencies
 
+```
+openai
+langchain
+langchain-community
+langchain-huggingface
+langchain_openai
+langchain_core
+tiktoken
+rdflib
+python-dotenv
+faiss-cpu
+numpy
+scikit-learn
+ipykernel
+ipywidgets
+rdflib
+```
+
 See [`requirements.txt`](src/requirements.txt) for all required depencies.
