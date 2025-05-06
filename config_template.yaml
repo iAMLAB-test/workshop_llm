@@ -4,10 +4,10 @@
 AZURE_ENDPOINT: [ Enter your Azure endpoint here ]
 
 ## Decoder
+API_DEPLOYMENT_NAME: [ Enter your deployment name here ]
 API_VERSION_DECODER: [ Enter your API version here ]
 API_KEY_DECODER: [ Enter your API key here ]
 
 ## Encoder
-API_DEPLOYMENT_NAME: [ Enter your deployment name here ]
 API_VERSION_ENCODER: [ Enter your API version here ]
 API_KEY_ENCODER: [ Enter your API key here ]
