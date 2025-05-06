@@ -1,15 +1,23 @@
-openai
-langchain
-langchain-community
-langchain-huggingface
-langchain_openai
-langchain_core
-tiktoken
-rdflib
-python-dotenv
-faiss-cpu
-numpy
-scikit-learn
-ipykernel
-ipywidgets
-rdflib
+# LLMs / RAG / Knowledge Graphs
+openai==1.77.0
+langchain==0.3.25
+langchain-community==0.3.23
+langchain-huggingface==0.1.2
+langchain-openai==0.3.16
+langchain-core==0.3.58
+tiktoken==0.9.0
+ollama==0.1.0
+faiss-cpu==1.11.0
+rdflib==7.1.4
+
+# Configuration
+python-dotenv==1.1.0
+
+# General
+numpy==2.2.5
+scikit-learn==1.4.2
+
+# Notebooks
+ipykernel==6.29.5
+ipywidgets==8.1.7
+accelerate==1.6.0
