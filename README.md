@@ -22,7 +22,7 @@ From an empty source folder in which you will run the notebook, run the followin
    git clone https://github.com/iAMLAB-test/workshop_llm
    ```
 
-2. Open the `src/RAG_workshop.ipynb` notebook and follow further instructions.
+2. Open the `src/LLM_workshop.ipynb` or `src/RAG_workshop.ipynb` notebook and follow further instructions.
 
 ---
 
@@ -42,22 +42,4 @@ From an empty source folder in which you will run the notebook, run the followin
 
 ## 🛠 Dependencies
 
-```
-openai
-langchain
-langchain-community
-langchain-huggingface
-langchain_openai
-langchain_core
-tiktoken
-rdflib
-python-dotenv
-faiss-cpu
-numpy
-scikit-learn
-ipykernel
-ipywidgets
-rdflib
-```
-
-See [`requirements.txt`](src/requirements.txt) for all required depencies.
+See [`requirements.txt`](src/requirements.txt) for all required dependencies.
