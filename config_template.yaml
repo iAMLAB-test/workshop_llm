@@ -1,12 +1,13 @@
 # This is a template configuration file for the Azure OpenAI API.
 # Fill in the placeholders with your actual configuration values.
 # Then save the file as 'config.yaml' in the same directory.
-AZURE_ENDPOINT: [Enter your Azure endpoint here]
+AZURE_ENDPOINT: [ Enter your Azure endpoint here ]
 
 ## Decoder
-API_VERSION_DECODER: [Enter your API version here]
-API_KEY_DECODER: [Enter your API key here]
+API_VERSION_DECODER: [ Enter your API version here ]
+API_KEY_DECODER: [ Enter your API key here ]
 
 ## Encoder
-API_VERSION_ENCODER: [Enter your API version here]
-API_KEY_ENCODER: [Enter your API key here]
+API_DEPLOYMENT_NAME: [ Enter your deployment name here ]
+API_VERSION_ENCODER: [ Enter your API version here ]
+API_KEY_ENCODER: [ Enter your API key here ]
